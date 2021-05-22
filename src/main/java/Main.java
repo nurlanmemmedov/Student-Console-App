@@ -51,16 +51,7 @@ public class Main {
         return choice;
     }
 
-    private static int searchMenu(){
-        System.out.println("-------------------------------------------------------------------SEARCH MENU-------------------------------------------------------------------");
-        System.out.println("1.SEARCH BY NAME");
-        System.out.println("2.SEARCH BY SURNAME");
-        System.out.println("3.SEARCH BY FATHER NAME");
-        System.out.println("4.GO BACK");
-        System.out.println("-------------------------------------------------------------------SEARCH MENU-------------------------------------------------------------------");
-        int choice = InputReader.readInt("Enter number of menu: ",1, 4);
-        return choice;
-    }
+
 
     private static void start() throws JsonProcessingException {
         while (true){
@@ -85,6 +76,17 @@ public class Main {
         }
     }
 
+    private static int searchMenu(){
+        System.out.println("-------------------------------------------------------------------SEARCH MENU-------------------------------------------------------------------");
+        System.out.println("1.SEARCH BY NAME");
+        System.out.println("2.SEARCH BY SURNAME");
+        System.out.println("3.SEARCH BY FATHER NAME");
+        System.out.println("4.GO BACK");
+        System.out.println("-------------------------------------------------------------------SEARCH MENU-------------------------------------------------------------------");
+        int choice = InputReader.readInt("Enter number of menu: ",1, 4);
+        return choice;
+    }
+
     private static void search() throws JsonProcessingException {
         while (true){
             int choice = searchMenu();
@@ -104,7 +106,6 @@ public class Main {
             }
         }
     }
-
 
 
     public static void createStudent() throws JsonProcessingException {
@@ -158,6 +159,24 @@ public class Main {
         System.out.println("Student deleted successfully");
     }
 
+    public static void searchByName(){
+        String keyWord = InputReader.readString("Type name of the student to search: ");
+        TabularData.printStudents(nameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
+    }
+
+
+    public static void searchBySurname(){
+        String keyWord = InputReader.readString("Type surname of the student to search: ");
+        TabularData.printStudents(surnameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
+    }
+
+
+    public static void searchByFatherName(){
+        String keyWord = InputReader.readString("Type father name of the student to search: ");
+        TabularData.printStudents(fatherNameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
+    }
+
+
     public static boolean checkIfExists(int id){
         for(Student student : students){
             if (student.getId() == id){
@@ -177,6 +196,17 @@ public class Main {
         throw new NoSuchElementException();
     }
 
+
+
+    public static void syncWithList(){
+        nameStudents.clear();
+        for (Student student: students){
+            nameStudents.put(student.getName()+student.getId(), student);
+            surnameStudents.put(student.getSurName()+student.getId() , student);
+            fatherNameStudents.put(student.getFatherName()+student.getId() , student);
+        }
+    }
+
     public static void updateJsonFile() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(students);
@@ -185,32 +215,6 @@ public class Main {
             writer.write(jsonString);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static void searchByName(){
-        String keyWord = InputReader.readString("Type name of the student to search: ");
-        TabularData.printStudents(nameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
-    }
-
-
-    public static void searchBySurname(){
-        String keyWord = InputReader.readString("Type surname of the student to search: ");
-        TabularData.printStudents(surnameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
-    }
-
-
-    public static void searchByFatherName(){
-        String keyWord = InputReader.readString("Type father name of the student to search: ");
-        TabularData.printStudents(fatherNameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
-    }
-
-    public static void syncWithList(){
-        nameStudents.clear();
-        for (Student student: students){
-            nameStudents.put(student.getName()+student.getId(), student);
-            surnameStudents.put(student.getSurName()+student.getId() , student);
-            fatherNameStudents.put(student.getFatherName()+student.getId() , student);
         }
     }
 }
