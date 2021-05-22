@@ -166,19 +166,19 @@ public class Main {
 
     public static void searchByName(){
         String keyWord = InputReader.readString("Type name of the student to search: ");
-        TabularData.printStudents(nameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
+        TabularData.printStudents(nameStudents.subMap( keyWord.toLowerCase(), keyWord.toLowerCase() + Character.MAX_VALUE ));
     }
 
 
     public static void searchBySurname(){
         String keyWord = InputReader.readString("Type surname of the student to search: ");
-        TabularData.printStudents(surnameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
+        TabularData.printStudents(surnameStudents.subMap( keyWord.toLowerCase(), keyWord.toLowerCase() + Character.MAX_VALUE ));
     }
 
 
     public static void searchByFatherName(){
         String keyWord = InputReader.readString("Type father name of the student to search: ");
-        TabularData.printStudents(fatherNameStudents.subMap( keyWord, keyWord + Character.MAX_VALUE ));
+        TabularData.printStudents(fatherNameStudents.subMap( keyWord.toLowerCase(), keyWord.toLowerCase() + Character.MAX_VALUE ));
     }
 
 
