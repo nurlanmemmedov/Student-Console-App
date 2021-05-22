@@ -11,12 +11,16 @@ public class InputReader {
     public static int readInt(String message ,int min, int max){
         int choice;
         while (true){
-            System.out.print(message);
-            choice = Integer.parseInt(scanner.nextLine());
-            if (choice >= min && choice <=max) {
-                break;
+            try {
+                System.out.print(message);
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice >= min && choice <=max){
+                    break;
+                }
+                System.out.println("Please type number between "+min+" and "+ max);
+            }catch (Exception e){
+                System.out.println("Please type number between "+min+" and "+ max);
             }
-            System.out.println("Please type number between "+min+" and "+ max);
         }
         return choice;
     }
@@ -64,11 +68,11 @@ public class InputReader {
         while (true){
             System.out.print(message);
             str = scanner.nextLine();
-            if (!str.equals("")){
+            if (str.matches("[a-zA-Z]{2,20}")){
                 break;
             }
             else{
-                System.out.println("input can't be empty");
+                System.out.println("input can't be empty and can't consist of numbers");
             }
         }
         return str;
