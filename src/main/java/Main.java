@@ -47,8 +47,7 @@ public class Main {
         System.out.println("4.SEARCH OVER STUDENTS");
         System.out.println("5.LOG OUT");
         System.out.println("-------------------------------------------------------------------STUDENT MENU-------------------------------------------------------------------");
-        int choice = InputReader.readInt("Enter number of menu: ",1, 4);
-        return choice;
+        return InputReader.readInt("Enter number of menu: ",1, 5);
     }
 
 
@@ -83,8 +82,7 @@ public class Main {
         System.out.println("3.SEARCH BY FATHER NAME");
         System.out.println("4.GO BACK");
         System.out.println("-------------------------------------------------------------------SEARCH MENU-------------------------------------------------------------------");
-        int choice = InputReader.readInt("Enter number of menu: ",1, 4);
-        return choice;
+        return InputReader.readInt("Enter number of menu: ",1, 4);
     }
 
     private static void search() throws JsonProcessingException {
@@ -101,8 +99,7 @@ public class Main {
                     searchByFatherName();
                     break;
                 case 4:
-                    start();
-                    break;
+                    return;
             }
         }
     }

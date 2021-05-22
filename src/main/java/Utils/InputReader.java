@@ -11,15 +11,12 @@ public class InputReader {
     public static int readInt(String message ,int min, int max){
         int choice;
         while (true){
-            try {
-                System.out.print(message);
-                choice = Integer.parseInt(scanner.nextLine());
-                if (choice >= min && choice <=max){
-                    break;
-                }
-            }catch (Exception e){
-                System.out.println("Please type number between "+min+" and "+ max);
+            System.out.print(message);
+            choice = Integer.parseInt(scanner.nextLine());
+            if (choice >= min && choice <=max) {
+                break;
             }
+            System.out.println("Please type number between "+min+" and "+ max);
         }
         return choice;
     }
